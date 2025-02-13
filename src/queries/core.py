@@ -7,9 +7,8 @@ from models import metadata_obj, workers_table
 class SyncCore:
     @staticmethod
     def create_tables():
-        sync_engine.echo = False
-        metadata_obj.drop_all(bind=sync_engine, checkfirst=False, cascade=True)
-        metadata_obj.create_all(bind=sync_engine)
+        metadata_obj.drop_all(sync_engine)
+        metadata_obj.create_all(sync_engine)
         sync_engine.echo = True
 
 
