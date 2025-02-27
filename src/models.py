@@ -38,6 +38,11 @@ class ResumesOrm(Base):
     updated_at: Mapped[updated_at]
 
 
+class BookModel(Base):
+    __tablename__ = 'books'
+    id: Mapped[intpk]
+    title: Mapped[str]
+    author: Mapped[str]
 
 
 
@@ -51,12 +56,14 @@ class ResumesOrm(Base):
 
 
 
-metadata_obj = MetaData()
 
-workers_table = Table(
-    "workers",
-    metadata_obj,
-    Column("id", Integer, primary_key=True),
-    Column("username", String),
 
-)
+# metadata_obj = MetaData()
+#
+# workers_table = Table(
+#     "workers",
+#     metadata_obj,
+#     Column("id", Integer, primary_key=True),
+#     Column("username", String),
+#
+# )

@@ -3,7 +3,7 @@ from sqlalchemy import text, insert, select, update
 from database import sync_engine, async_engine, session_factory, Base
 from models import WorkersOrm
 
-class SyncOrm(object):
+class SyncOrm:
     @staticmethod
     def create_tables():
         Base.metadata.drop_all(sync_engine)
@@ -36,4 +36,10 @@ class SyncOrm(object):
             session.commit()
 
 
+class AsyncOrm:
+    @staticmethod
+    async def create_tables():
+        async with async_engine.begin() as conn:
+            await conn.run_sync(Base.metadata.drop_all)
+            await conn.run_sync(Base.metadata.create_all)
 
